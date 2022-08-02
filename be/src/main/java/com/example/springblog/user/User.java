@@ -24,6 +24,13 @@ public class User {
     @Size(min = 2)
     @NotBlank(message = "Name is required")
     private String name;
+    @Size(min = 2)
+    @Column(nullable = false, unique = true)
+    @NotBlank(message = "Username is required")
+    private String username;
+    @Column(nullable = false)
+    @NotBlank(message = "Password is required")
+    private String password;
     @Column(nullable = false, unique = true)
     @NotBlank(message = "Email is required")
     @Email(message = "Please enter a valid email")
@@ -31,11 +38,16 @@ public class User {
     private int age;
     @NotBlank(message = "Role is required")
     private String role;
+    @Column(columnDefinition = "boolean default true")
+    private Boolean isActive;
 
-    public User(String name, String email, int age, String role) {
+    public User(String name, String username, String password, String email, int age, String role, boolean isActive) {
         this.name = name;
+        this.username = username;
+        this.password = password;
         this.email = email;
         this.age = age;
         this.role = role;
+        this.isActive = isActive;
     }
 }

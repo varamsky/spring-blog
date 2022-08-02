@@ -25,9 +25,12 @@ public class UserService {
 
     protected ResponseEntity<?> createUser(User body) {
         String name = body.getName();
+        String username = body.getUsername();
+        String password = body.getPassword();
         String email = body.getEmail();
         int age = body.getAge();
         String role = body.getRole();
+        boolean isActive = body.getIsActive() == null ? true : body.getIsActive();
 
         boolean isRoleValid = false;
         for (UserRoles userRole : UserRoles.values()) {
@@ -43,6 +46,6 @@ public class UserService {
         if (!isRoleValid)
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMap);
 
-        return new ResponseEntity<User>(userRepository.save(new User(name, email, age, role)), HttpStatus.CREATED);
+        return new ResponseEntity<User>(userRepository.save(new User(name, username, password, email, age, role, isActive)), HttpStatus.CREATED);
     }
 }

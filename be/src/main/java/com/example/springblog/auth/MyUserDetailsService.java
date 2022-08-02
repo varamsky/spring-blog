@@ -1,15 +1,15 @@
 package com.example.springblog.auth;
 
-import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-// import com.example.springblog.user.User;
+import com.example.springblog.user.MyUserDetails;
+import com.example.springblog.user.User;
 import com.example.springblog.user.UserRepository;
 
 @Service
@@ -20,14 +20,14 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // TODO: match with actual user from the database
-        return new User("test", "password", new ArrayList<>());
+        Optional<User> user = userRepository.findByUsername(username);
 
-        // User user = userRepository.findByUsername(username);
-        // if (user == null) {
-        // throw new UsernameNotFoundException(username);
+        // TODO: Custom "user not found" message is not sent when user is not found!
+        // if (user.isEmpty()) {
+        //     throw new UsernameNotFoundException("User not found for username : " + username);
         // }
+        user.orElseThrow(() -> new UsernameNotFoundException("User not found for username : " + username));
 
-        // return new MyUserPrincipal(user);
+        return user.map(MyUserDetails::new).get();
     }
 }
