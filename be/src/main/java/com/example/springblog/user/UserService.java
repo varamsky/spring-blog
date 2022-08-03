@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,6 +15,9 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
+    
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     protected List<User> getAllUsers() {
         return userRepository.findAll();
@@ -26,7 +30,7 @@ public class UserService {
     protected ResponseEntity<?> createUser(User body) {
         String name = body.getName();
         String username = body.getUsername();
-        String password = body.getPassword();
+        String password = passwordEncoder.encode(body.getPassword()); // encoding the simple text password
         String email = body.getEmail();
         int age = body.getAge();
         String role = body.getRole();
