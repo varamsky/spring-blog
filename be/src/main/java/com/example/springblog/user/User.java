@@ -10,12 +10,15 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @Entity
+@DynamicUpdate // this udpates only relevant attributes of the entity during partial update
 @Table(name = "users")
 public class User {
     @Id
