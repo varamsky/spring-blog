@@ -4,13 +4,15 @@ import lombok.Data;
 
 @Data
 public class AuthenticationResponse {
-    private String jwt;
-    private String jwtExpiration;
-    private String tokenType;
+    private String token;
+    private String expires_in;
+    private String token_type;
+    private String user;
 
-    public AuthenticationResponse(String jwt, String jwtExpiration, String tokenType) {
-        this.jwt = jwt;
-        this.jwtExpiration = jwtExpiration;
-        this.tokenType = tokenType;
+    public AuthenticationResponse(String token, String expires_in, String token_type, String username) {
+        this.token = token;
+        this.expires_in = expires_in;
+        this.token_type = token_type;
+        this.user = username;
     }
 }

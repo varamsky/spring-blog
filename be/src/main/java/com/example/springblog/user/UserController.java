@@ -60,7 +60,7 @@ public class UserController {
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         final String jwt = jwtUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new AuthenticationResponse(jwt, Integer.toString(JWT_EXPIRATION_MS), "Bearer"));
+        return ResponseEntity.ok(new AuthenticationResponse(jwt, Integer.toString(JWT_EXPIRATION_MS), "Bearer", userDetails.getUsername()));
     }
 
     @GetMapping("/users")

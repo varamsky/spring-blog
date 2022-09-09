@@ -11,7 +11,6 @@ function TextField(props) {
         onChange,
         value,
         disabled = false,
-        isLabelBold = false,
         size = "sm",
     } = props;
     return (
