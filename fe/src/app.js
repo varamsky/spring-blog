@@ -10,11 +10,12 @@ import {
   LOGIN_ROUTE,
   LS_CURRENT_USER,
   LS_SESSION_JWT,
+  USERS_ROUTE,
 } from "./constants.js";
 import { useDispatch } from "react-redux";
 import PageNotFound from "./components/pages/pageNotFound.js";
 import { addCurrentUser, setAuthJwt } from "./redux/auth/authActions.js";
-import Home from "./components/pages/home.js";
+import Users from "./components/pages/users.js";
 
 function App() {
   const dispatch = useDispatch();
@@ -49,7 +50,7 @@ function App() {
             }}
           />
           <Route path={LOGIN_ROUTE} exact component={Login} />
-          <Route path={HOME_ROUTE} exact component={Home} />
+          <Route path={USERS_ROUTE} exact component={Users} />
           <Route component={PageNotFound} />
         </Switch>
       </div>

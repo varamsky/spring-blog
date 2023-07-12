@@ -30,7 +30,8 @@ public class UserService {
     protected ResponseEntity<?> getUserById(int id) {
         Optional<User> user = userRepository.findById(id);
 
-        if (user.isEmpty()) {
+//        if (user.isEmpty()) {
+        if (!user.isPresent()) {
             HashMap<String, String> errorMap = new HashMap<>();
             errorMap.put("error", "User not found");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMap);
@@ -46,7 +47,7 @@ public class UserService {
         String email = body.getEmail();
         int age = body.getAge();
         String role = body.getRole();
-        boolean isActive = body.getIsActive() == null ? true : body.getIsActive();
+        boolean isActive = body.getIsActive() == null || body.getIsActive();
 
         boolean isRoleValid = false;
         for (UserRoles userRole : UserRoles.values()) {
@@ -57,8 +58,7 @@ public class UserService {
         }
 
         // TODO: handle exceptions for duplicate username or email problems
-        // TODO: have a common error message syntax for all responses(also for the
-        // in-built responses)!
+        // TODO: have a common error message syntax for all responses(also for the in-built responses)!
 
         // TODO: find a better solution to this instead of using ResponseEntity<?>
         HashMap<String, String> errorMap = new HashMap<>();
@@ -73,11 +73,11 @@ public class UserService {
 
     protected ResponseEntity<?> updateUserById(int id, Map<String, String> body) {
         Optional<User> user = userRepository.findById(id);
-        if (user.isEmpty()) {
-            HashMap<String, String> errorMap = new HashMap<>();
-            errorMap.put("error", "User not found");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMap);
-        }
+//        if (user.isEmpty()) {
+//            HashMap<String, String> errorMap = new HashMap<>();
+//            errorMap.put("error", "User not found");
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMap);
+//        }
 
         // TODO: look for better ways to do update rather than checking for each attribute is present or null!
         if (body.get("name") != null)

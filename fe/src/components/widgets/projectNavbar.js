@@ -18,7 +18,7 @@ import {
     LOGIN_ROUTE,
     LS_CURRENT_USER,
     LS_SESSION_JWT,
-    HOME_ROUTE,
+    USERS_ROUTE,
 } from "../../constants";
 import { removeCurrentUser, setAuthJwt } from "../../redux/auth/authActions";
 
@@ -56,10 +56,10 @@ const ProjectNavbar = () => {
                 >
                     <Nav className="mr-auto" navbar>
                         <NavItem>
-                            <NavLink href={HOME_ROUTE}>Home</NavLink>
+                            <NavLink href={USERS_ROUTE}>Users</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href={HOME_ROUTE}>
+                            <NavLink href={USERS_ROUTE}>
                                 Other pages
                             </NavLink>
                         </NavItem>
@@ -73,7 +73,7 @@ const ProjectNavbar = () => {
                                 <DropdownItem>
                                     <NavItem>
                                         <NavLink
-                                            href={HOME_ROUTE.replace(
+                                            href={USERS_ROUTE.replace(
                                                 ":id",
                                                 currentUser.id
                                             )}

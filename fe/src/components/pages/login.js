@@ -7,7 +7,7 @@ import {
     LOGIN_URL,
     LS_SESSION_JWT,
     LS_CURRENT_USER,
-    HOME_ROUTE,
+    USERS_ROUTE
 } from "./../../constants.js";
 import "./../../styles/login.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -84,7 +84,7 @@ const Login = (props) => {
                             JSON.stringify(currentUserToLocalStorage)
                         );
                         setTimeout(() => {
-                            history.push({ HOME_ROUTE });
+                            history.push({ USERS_ROUTE });
                         }, 1500);
                     } else {
                         setLoginError(response.data.message);
@@ -104,7 +104,7 @@ const Login = (props) => {
         <>
             {jwt !== null && checkSessionExpired() === false ? (
                 // if the admin is logged in and session is not expired then redirect to admin dashboard
-                <Redirect to={HOME_ROUTE} />
+                <Redirect to={USERS_ROUTE} />
             ) : (
                 <div className="row login-row justify-content-center">
                     <div className="col-lg-4 col-md-7 login-form">

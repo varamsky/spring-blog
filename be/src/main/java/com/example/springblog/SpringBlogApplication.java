@@ -11,17 +11,19 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @SpringBootApplication
 public class SpringBlogApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBlogApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBlogApplication.class, args);
+    }
 
-	@Bean
-   public WebMvcConfigurer corsConfigurer() {
-      return new WebMvcConfigurerAdapter() {
-         @Override
-         public void addCorsMappings(CorsRegistry registry) {
-            registry.addMapping("/api/**").allowedOrigins("http://localhost:3000");
-         }
-      };
-   }
+    /**
+     * This also works for allowing CORS other than the corsConfigurationSource method in SecurityConfigurer.java*/
+//    @Bean
+//    public WebMvcConfigurer corsConfigurer() {
+//        return new WebMvcConfigurer() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                registry.addMapping("/**").allowedOrigins("http://localhost:3000");
+//            }
+//        };
+//    }
 }

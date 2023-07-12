@@ -9,7 +9,7 @@ export const DELETE_USER_BY_ID_URL = BASE_SERVER_URL + "/api/users"; // actual e
 // react routes
 export const BASE_REACT_ROUTE = "http://localhost:3000";
 export const LOGIN_ROUTE = "/login";
-export const HOME_ROUTE = "/home";
+export const USERS_ROUTE = "/users";
 
 // local storage item names
 export const LS_SESSION_JWT = "SESSION_JWT";
